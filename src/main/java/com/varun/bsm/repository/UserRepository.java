@@ -1,4 +1,7 @@
 package com.varun.bsm.repository;
 
-public class UserRepository {
+import com.varun.bsm.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
 }
