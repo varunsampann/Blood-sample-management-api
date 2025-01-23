@@ -32,6 +32,8 @@ public class User {
     private Gender gender;
     private String availableCity;
     private boolean verified;
+    private LocalDate createdAt;
+    private LocalDate lastModifiedAt;
 
     public Gender getGender() {
         return gender;
@@ -48,8 +50,6 @@ public class User {
     public void setBloodGroup(BloodGroup bloodGroup) {
         this.bloodGroup = bloodGroup;
     }
-
-
 
     public int getUserId() {
         return userId;
@@ -121,5 +121,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    public LocalDate getLastModifiedAt() {
+        return lastModifiedAt;
+    }
+
+    public void setLastModifiedAt(LocalDate lastModifiedAt) {
+        this.lastModifiedAt = lastModifiedAt;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 }
