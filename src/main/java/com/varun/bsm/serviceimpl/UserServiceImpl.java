@@ -4,16 +4,18 @@ import com.varun.bsm.entity.User;
 import com.varun.bsm.exception.UserNotFoundById;
 import com.varun.bsm.repository.UserRepository;
 import com.varun.bsm.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl  implements UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+//    @Autowired
+    private final UserRepository userRepository;
 
     @Override
     public User addUser(User user) {
@@ -27,7 +29,7 @@ public class UserServiceImpl  implements UserService {
             return optionals.get();
         }
         else{
-            throw  new UserNotFoundById("user not found by the given Id");
+            throw  new UserNotFoundById("user not found");
         }
     }
 
@@ -51,4 +53,19 @@ public class UserServiceImpl  implements UserService {
             throw new UserNotFoundById("user not found by the given Id");
         }
     }
+
+//    @Override
+//    public User deleteUser(int userId) {
+//      Optional<User> optional=  userRepository.findById(userId);
+//      if(optional.isPresent()){
+//         User user= optional.get();
+//         userRepository.delete(user);
+//         return user;
+//      }
+//      else{
+//          throw new UserNotFoundById("User not found");
+//      }
+//    }
+
+
 }
