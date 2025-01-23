@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ErrorStructure {
+public class ErrorStructure <T>{
 
         private int status;
         private String message;
-        private String rootCause;
+        private T rootCause;
 //
 //
 //        public int getStatus() {
