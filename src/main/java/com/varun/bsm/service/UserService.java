@@ -10,5 +10,9 @@ public interface UserService {
     public UserResponseDto findUserById(int userId);
     public UserResponseDto updateUser(UserRequestDto userRequestDto,int userId);
 
+    UserResponseDto addAdminUsers(UserRequestDto userRequestDto);
+
+    UserResponseDto promoteUser(UserRequestDto userRequestDto, int userId);
+
 //    User deleteUser(int userId);
 }

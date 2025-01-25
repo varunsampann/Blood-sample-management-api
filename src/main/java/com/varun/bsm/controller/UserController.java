@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 public class UserController {
-//@Autowired
+    //@Autowired
     private final UserService userService;
     private final RestResponseBuilder responseBuilder;
 
     @PostMapping("/users")
     public ResponseEntity<ResponseStructure<UserResponseDto>> addUser(@RequestBody @Valid UserRequestDto userRequestDto) {
-       UserResponseDto user= userService.addUser(userRequestDto);
-       return responseBuilder.success(HttpStatus.CREATED, "User Created", user);
+        UserResponseDto user = userService.addUser(userRequestDto);
+        return responseBuilder.success(HttpStatus.CREATED, "User Created", user);
 
     }
 
@@ -36,13 +36,21 @@ public class UserController {
     }
 
     @PutMapping("/users/{userId}")
-    public ResponseEntity<ResponseStructure<UserResponseDto>> updateUser(@PathVariable("userId")int userId, @RequestBody UserRequestDto userRequestDto)  {
-       UserResponseDto userResponseDto = userService.updateUser(userRequestDto, userId);
+    public ResponseEntity<ResponseStructure<UserResponseDto>> updateUser(@PathVariable("userId") int userId, @RequestBody UserRequestDto userRequestDto) {
+        UserResponseDto userResponseDto = userService.updateUser(userRequestDto, userId);
         return responseBuilder.success(HttpStatus.OK, "User Updated ", userResponseDto);
     }
-//    @DeleteMapping("/delete-user")
-//    public ResponseEntity<ResponseStructure<User>>deleteById(@RequestParam int userId){
-//            User user=userService.deleteUser(userId);
-//        return responseBuilder.success(HttpStatus.FOUND, "user Deleted", user);
-//    }
+
+    @PostMapping("/AddAdminUsers")
+    public ResponseEntity<ResponseStructure<UserResponseDto>> addAdminUsers(@RequestBody UserRequestDto userRequestDto) {
+        UserResponseDto userResponseDto = userService.addAdminUsers(userRequestDto);
+        return responseBuilder.success(HttpStatus.CREATED, "Admin Created ", userResponseDto);
+    }
+
+    @PostMapping("/userPromotion/{userId}")
+    public ResponseEntity<ResponseStructure<UserResponseDto>> promotUser(@RequestBody UserRequestDto userRequestDto, @PathVariable int userId) {
+        UserResponseDto responseDto = userService.promoteUser(userRequestDto, userId);
+        return responseBuilder.success(HttpStatus.CREATED, "Admin Created ", responseDto);
+    }
+
 }

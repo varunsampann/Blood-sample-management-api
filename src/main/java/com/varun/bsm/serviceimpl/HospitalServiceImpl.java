@@ -18,34 +18,34 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Override
     public HospitalResponse registerHospital(HospitalRequest hospitalRequest) {
-        Hospital hospital = this.mapToHospital(hospitalRequest,new Hospital());
+        Hospital hospital = this.mapToHospital(hospitalRequest, new Hospital());
 
-         hospital= hospitalRepository.save(hospital);
-         return this.mapToHospitalResponse(hospital);
+        hospital = hospitalRepository.save(hospital);
+        return this.mapToHospitalResponse(hospital);
     }
 
     @Override
     public HospitalResponse findHospitalById(int hospitalId) {
-           Optional<Hospital> optional  =hospitalRepository.findById(hospitalId);
-           if(optional.isPresent()){
-               Hospital hospital=optional.get();
-               return this.mapToHospitalResponse(hospital);
-           }else{
-               throw  new HospitalNotFoundById("Hospital not found");
-           }
+        Optional<Hospital> optional = hospitalRepository.findById(hospitalId);
+        if (optional.isPresent()) {
+            Hospital hospital = optional.get();
+            return this.mapToHospitalResponse(hospital);
+        } else {
+            throw new HospitalNotFoundById("Hospital not found");
+        }
 
     }
 
     @Override
     public HospitalResponse updateHospital(int hospitalId, HospitalRequest hospitalRequest) {
-       Optional<Hospital>optional= hospitalRepository.findById(hospitalId);
-       if(optional.isEmpty()) {
-           throw new HospitalNotFoundById("Hospital not found");
-       }
-       Hospital hospital =optional.get();
-       hospital= this.mapToHospital(hospitalRequest,hospital);
+        Optional<Hospital> optional = hospitalRepository.findById(hospitalId);
+        if (optional.isEmpty()) {
+            throw new HospitalNotFoundById("Hospital not found");
+        }
+        Hospital hospital = optional.get();
+        hospital = this.mapToHospital(hospitalRequest, hospital);
         hospital = hospitalRepository.save(hospital);
-       return this.mapToHospitalResponse(hospital);
+        return this.mapToHospitalResponse(hospital);
     }
 
 
@@ -58,7 +58,7 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     private Hospital mapToHospital(HospitalRequest hospitalRequest, Hospital hospital) {
-       hospital.setHospitalName(hospitalRequest.getHospitalName());
+        hospital.setHospitalName(hospitalRequest.getHospitalName());
         return hospital;
     }
 }

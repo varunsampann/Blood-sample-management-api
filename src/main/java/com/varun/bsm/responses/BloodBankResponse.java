@@ -14,4 +14,5 @@ public class BloodBankResponse {
     private int bankId;
     private String bankName;
     private int emergencyUnitCount;
+
 }

@@ -18,53 +18,54 @@ import java.util.Optional;
 public class BloodBankServiceImpl implements BloodBankService {
 
     private BloodBankRepository bloodBankRepository;
+
     @Override
     public BloodBankResponse addBlood(BloodbankRequest bloodbankRequest) {
-              BloodBank bloodBank= mapToBank(bloodbankRequest,new BloodBank());
+        BloodBank bloodBank = mapToBank(bloodbankRequest, new BloodBank());
 
-               bloodBank = bloodBankRepository.save(bloodBank);
-               return mapToBloodResponse(bloodBank);
+        bloodBank = bloodBankRepository.save(bloodBank);
+        return mapToBloodResponse(bloodBank);
     }
 
     @Override
     public BloodBankResponse findBloodBankById(int bankId) {
-       Optional<BloodBank> optional = bloodBankRepository.findById(bankId);
-       if(optional.isPresent()){
-             BloodBank bloodBank=optional.get();
+        Optional<BloodBank> optional = bloodBankRepository.findById(bankId);
+        if (optional.isPresent()) {
+            BloodBank bloodBank = optional.get();
             return mapToBloodResponse(bloodBank);
-       }else {
-           throw new BloodBankNotFoundById("BloodBank Not Found");
-       }
+        } else {
+            throw new BloodBankNotFoundById("BloodBank Not Found");
+        }
 
     }
 
     @Override
     public BloodBankResponse updateBank(int bankId, BloodbankRequest bloodbankRequest) {
         Optional<BloodBank> optional = bloodBankRepository.findById(bankId);
-        if(optional.isEmpty()){
+        if (optional.isEmpty()) {
             throw new BloodBankNotFoundById("Not Found the Bloodbank");
         }
-        BloodBank bloodBank =mapToBank(bloodbankRequest,optional.get());
-        bloodBank =bloodBankRepository.save(bloodBank);
+        BloodBank bloodBank = mapToBank(bloodbankRequest, optional.get());
+        bloodBank = bloodBankRepository.save(bloodBank);
         return mapToBloodResponse(bloodBank);
     }
 
     @Override
     public List<BloodBankResponse> AllBloodBanks() {
-         List<BloodBank>bloodBanks = bloodBankRepository.findAll();
-         if(bloodBanks.isEmpty()){
-             throw new BloodBankNotFoundById(" is Empty ");
-         }
+        List<BloodBank> bloodBanks = bloodBankRepository.findAll();
+        if (bloodBanks.isEmpty()) {
+            throw new BloodBankNotFoundById(" is Empty ");
+        }
         List<BloodBankResponse> responses = new ArrayList<>();
-         for(BloodBank bloodBank:bloodBanks){
-             BloodBankResponse response = mapToBloodResponse(bloodBank);
-             responses.add(response);
-         }
-         return responses;
+        for (BloodBank bloodBank : bloodBanks) {
+            BloodBankResponse response = mapToBloodResponse(bloodBank);
+            responses.add(response);
+        }
+        return responses;
     }
 
     private BloodBankResponse mapToBloodResponse(BloodBank bloodBank) {
-        return  BloodBankResponse
+        return BloodBankResponse
                 .builder()
                 .bankId(bloodBank.getBankId())
                 .bankName(bloodBank.getBankName())

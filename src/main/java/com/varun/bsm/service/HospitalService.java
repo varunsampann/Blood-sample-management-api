@@ -9,4 +9,6 @@ public interface HospitalService {
     HospitalResponse findHospitalById(int hospitalId);
 
     HospitalResponse updateHospital(int hospitalId, HospitalRequest hospitalRequest);
+
+//    HospitalResponse addAdminHospital(HospitalRequest hospitalRequest, int userId);
 }

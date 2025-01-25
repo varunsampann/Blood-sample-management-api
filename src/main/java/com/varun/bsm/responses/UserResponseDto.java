@@ -1,7 +1,9 @@
 package com.varun.bsm.responses;
 
+import com.varun.bsm.enumes.AdminType;
 import com.varun.bsm.enumes.BloodGroup;
 import com.varun.bsm.enumes.Gender;
+import com.varun.bsm.enumes.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +26,8 @@ public class UserResponseDto {
     private  boolean verified;
     private LocalDate createdAt;
     private LocalDate lastModifiedAt;
+    private UserRole userRole;
+    private AdminType type;
 
 //    public int getUserId() {
 //        return userId;

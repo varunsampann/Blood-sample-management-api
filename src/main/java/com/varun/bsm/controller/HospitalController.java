@@ -36,5 +36,9 @@ public class HospitalController {
         return responseBuilder.success(HttpStatus.OK,"Hospital updated",hospital);
     }
 
-
+//    @PostMapping("/hospitals-admin/{userId}")
+//    public ResponseEntity<ResponseStructure<HospitalResponse>> addAdminHospital(@RequestBody HospitalRequest hospitalRequest, @PathVariable int userId){
+//        HospitalResponse hospital=hospitalService.addAdminHospital(hospitalRequest, userId);
+//        return responseBuilder.success(HttpStatus.OK,"Hospital updated",hospital);
+//    }
 }

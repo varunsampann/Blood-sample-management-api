@@ -1,4 +1,11 @@
 package com.varun.bsm.exception;
 
-public class SampleNotFoundById {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
+public class SampleNotFoundById extends  RuntimeException{
+    private final String message;
+
 }
